@@ -32,15 +32,7 @@ function outcome(player, computer){
                 break;
         }
 }
-/*
-function game(){
-    for(let i = 1; i<=5; i++)
-    {
-        let player = prompt();
-        console.log(playRound(player,getComputerChoice()));
-    }
-}
-*/
+
 function play (){
     const computer = getComputerChoice();
     prompt.textContent = playRound(this.id,computer)
