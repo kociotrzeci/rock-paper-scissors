@@ -32,7 +32,7 @@ function outcome(player, computer){
                 break;
         }
 }
-
+/*
 function game(){
     for(let i = 1; i<=5; i++)
     {
@@ -40,5 +40,63 @@ function game(){
         console.log(playRound(player,getComputerChoice()));
     }
 }
+*/
+function play (){
+    const computer = getComputerChoice();
+    prompt.textContent = playRound(this.id,computer)
+    if (this.id === computer){}
+    else
+    {
+        if (outcome (this.id, computer)) scoreUser++;
+        else scoreComputer++;
+    }
+    score.textContent = scoreUser + " : " + scoreComputer;
+    if (scoreUser === 5 || scoreComputer === 5)
+    {
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        const winner = document.createElement('div');
+        if (scoreUser === 5) winner.textContent ="YOU WIN!";
+        else winner.textContent = "YOU LOOSE!";
+        const buttonRestart = document.createElement("button");
+        buttonRestart.textContent = "RESTART";
+        container.appendChild(buttonRestart);
+        container.appendChild(winner);
+        buttonRestart.addEventListener('click',restart);
+    }
+}
 
-game();
+function restart(){
+    scoreUser = 0;
+    scoreComputer = 0;
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    container.appendChild(buttonRock);
+    container.appendChild(buttonPaper);
+    container.appendChild(buttonScissors);
+    prompt.textContent = "";
+    score.textContent = scoreUser + " : " + scoreComputer;
+
+}
+
+
+
+let scoreUser = 0;
+let scoreComputer = 0;
+const div = document.querySelector('div');
+const buttonRock = document.querySelector('#Rock');
+const buttonPaper = document.querySelector("#Paper");
+const buttonScissors = document.querySelector("#Scissors");
+const container = document.querySelector("#container");
+const prompt = document.querySelector('#prompt');
+const score = document.querySelector('#score')
+
+
+
+buttonRock.addEventListener("click",play);
+buttonPaper.addEventListener("click",play);
+buttonScissors.addEventListener("click",play);
+
+
